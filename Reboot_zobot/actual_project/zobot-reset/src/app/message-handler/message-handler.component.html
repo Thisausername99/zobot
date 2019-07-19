@@ -1,0 +1,62 @@
+<p>{{messageText}}</p>
+
+<mat-card *ngIf="trigSuggestion.length > 0">
+  <mat-accordion multi="true">
+    <mat-expansion-panel *ngFor="let post of trigSuggestion" id="{{trigSuggestion.length}}">
+      <mat-expansion-panel-header>
+        <mat-panel-description color="primary">
+          Suggestion : {{post.suggestion}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="checkboxes">
+        <mat-action-row>
+          <form>
+            <mat-form-field>
+              <input matInput placeholder="question follow up" #question>
+            </mat-form-field>
+            <mat-checkbox color="primary" (click)="toggleSelection(hques.value,question.value)" #hques value="question" ng-hide="checked">Submit Question</mat-checkbox>
+          </form>
+        </mat-action-row>
+      </div>
+
+      <div class="checkboxes">
+          <mat-action-row>
+          <form (submit)="toggleSelection('quit',quit.value)">
+            <mat-form-field>
+              <input matInput placeholder="Quit Text" #quit>
+              <!---mat-error *ngIf="quit.invalid">please enter a quit text</mat-error--->
+            </mat-form-field>
+            <br>
+            <button mat-raised-button type="submit">Quit</button>
+          </form>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>Choose an action</mat-expansion-panel-header>
+              <mat-radio-group
+                class="example-radio-group"
+                [(ngModel)]="forQuit">
+              <mat-radio-button class="radio-button" *ngFor="let season of quitOption" [value]="season">
+                  {{season}}
+                </mat-radio-button>
+              </mat-radio-group>
+          </mat-expansion-panel>
+        </mat-action-row>
+      </div>
+
+      <div class="checkboxes">
+        <mat-action-row>
+          <form (submit)="toggleSelection('reply',reply.value)">
+            <mat-form-field>
+              <input matInput placeholder="reply to the user" #reply>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Submit reply</button>
+          </form>
+        </mat-action-row>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>
+
+<button mat-raised-button (click)="getInfo()">Record</button>
+<button mat-stroked-button routerLink="/trigger">Go back</button>

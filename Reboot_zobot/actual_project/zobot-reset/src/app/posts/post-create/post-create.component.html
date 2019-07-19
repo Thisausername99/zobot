@@ -1,0 +1,15 @@
+<h2>Suggestion</h2>
+
+    <button mat-raised-button type="submit" color="primary" (click)="addBlock()">+</button>
+  <mat-card>
+    <form #postForm="ngForm">
+    <mat-form-field>
+      <input matInput type="text" name="suggestion" placeholder="Suggestion"ngModel required #suggestion="ngModel">
+      <mat-error *ngIf="suggestion.invalid">please enter a post title</mat-error>
+      <div>
+        <button mat-raised-button type="button" color="primary">+</button>
+      </div>
+    </mat-form-field>
+    <!---button mat-raised-button type="button" color="primary">+</button--->
+  </form>
+</mat-card>

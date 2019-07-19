@@ -1,0 +1,38 @@
+<h1>TRIGGER HANLDER</h1>
+<div>
+<mat-card>
+    <form (submit)="triggerCreate(postForm)" #postForm="ngForm">
+      <mat-form-field>
+          <input matInput type="text" name="handlerReply" placeholder="Reply"ngModel required #hreply="ngModel">
+          <mat-error *ngIf="hreply.invalid">please enter a welcome text</mat-error>
+      </mat-form-field>
+      <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      >Welcome msg create</button>
+    </form>
+  </mat-card>
+</div>
+
+
+  <mat-accordion *ngIf="welcomeText!==''">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+           {{ welcomeText }}
+           </mat-expansion-panel-header>
+            <mat-action-row>
+                <input matInput type="text" name="edit" placeholder="Edit"ngModel required #hedit="ngModel">
+                <mat-error *ngIf="hedit.invalid">please enter a welcome text</mat-error>
+                <button mat-button color="primary" (click)="edit(hedit.value)">EDIT</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+  </mat-accordion>
+
+  <app-post-create></app-post-create>
+  <app-post-list></app-post-list>
+
+  <button mat-raised-button color="accent" (click)="triggerBuild()">
+      Build Trigger
+  </button><br>
+  <button mat-raised-button color="primary" routerLink="/message">Message handler create</button>
